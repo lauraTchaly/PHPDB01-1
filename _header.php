@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <title>Vitugo</title>
+    <title>Vitugo - <?php echo $title ?></title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <a id="top"></a>
@@ -18,13 +19,13 @@
                 <a href="/" title="Página Inicial">
                     <i class="fa-solid fa-house-chimney"></i><span>Início</span>
                 </a>
-                <a href="/contatos" title="Faça Contato">
+                <a href="/contacts/index.php" title="Faça Contato">
                     <i class="fa-solid fa-comment-dots"></i><span>Contatos</span>
                 </a>
-                <a href="/sobre" title="Sobre">
+                <a href="/about" title="Sobre">
                     <i class="fa-solid fa-circle-info"></i><span>Sobre</span>
                 </a>
-                <a href="/usuario" title="Usuário">
+                <a href="/user" title="Usuário">
                     <i class="fa-solid fa-user"></i><span>Usuário</span>
                 </a>
         </nav>

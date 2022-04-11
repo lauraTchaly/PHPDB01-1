@@ -1,6 +1,25 @@
 <?php
-//Inclui o cabeçalho da página
-require('_header.php')
+/** 
+* Arquivo que faz a configuração inicial da página.
+* Por exemplo, conecta-se ao banco de dados 
+*/
+require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
+
+/**
+ * Variável que define o título desta página
+ *     Referências:
+ *     → https://www.w3schools.com/php/php_variables.asp
+ *     → https://www.php.net/manual/pt_BR/language.variables.basics.php
+ */
+
+$title = "Quem tem fome tem pressa...";
+
+/*Inclui o cabeçalho da página
+*Referências:
+*     → https://www.w3schools.com/php/php_includes.asp
+*     → https://www.php.net/manual/pt_BR/function.include.php
+*/
+require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
 ?>
 <section>
     <h2>Título da Página</h2>
@@ -24,6 +43,6 @@ require('_header.php')
 </aside>
 <?php
 //Inclui o footer da página
-require('_footer.php')
+require($_SERVER['DOCUMENT_ROOT'] . '/_footer.php');
 ?>
         
