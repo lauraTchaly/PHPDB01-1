@@ -15,3 +15,27 @@ $db = array(
     "password" => ""
 );
 $conn = new mysqli($db["hostname"], $db["username"], $db["password"], $db["database"]);
+
+/**
+ * SQL de teste do banco de dados.
+ */
+$sql = "SELECT * FROM articles WHERE art_status = 'on'";
+
+/**
+ * Executa a query, armazenando o resultado em '$res'
+ */
+$res = $conn->query($sql);
+
+/**
+ * Loop para obter cada um dos registros.
+ * O método 'fetch_assoc()' retorna cada registro dentro de um array.
+ */
+while ($article = $res->fetch_assoc()) {
+
+    /**
+     * Exibindo valor da array no HTML.
+     */
+    echo '<pre>';
+    print_r($article);
+    echo '</pre>';
+}
