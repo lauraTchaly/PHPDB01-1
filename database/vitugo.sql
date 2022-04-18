@@ -22,7 +22,6 @@ CREATE TABLE users (
 
 -- Cria tabela de artigos
 CREATE TABLE articles(
-    REATE TABLE articles (
     art_id INT PRIMARY KEY AUTO_INCREMENT,
     art_title VARCHAR(127),
     art_intro VARCHAR(255),
