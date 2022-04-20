@@ -19,7 +19,7 @@
                 <a href="/" title="Página Inicial">
                     <i class="fa-solid fa-house-chimney"></i><span>Início</span>
                 </a>
-                <a href="/contacts/index.php" title="Faça Contato">
+                <a href="/contatos/index.php" title="Faça Contato">
                     <i class="fa-solid fa-comment-dots"></i><span>Contatos</span>
                 </a>
                 <a href="/about" title="Sobre">
