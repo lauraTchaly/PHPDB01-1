@@ -1,61 +1,81 @@
 <?php
-/** 
-* Arquivo que faz a configuração inicial da página.
-* Por exemplo, conecta-se ao banco de dados 
-*/
-require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
 
 /**
- * Variável que define o título desta página
- *     Referências:
- *     → https://www.w3schools.com/php/php_variables.asp
- *     → https://www.php.net/manual/pt_BR/language.variables.basics.php
+ * Arquivo que faz a configuração incial da página.
  */
+require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
 
+/***********************************************
+ * Seus códigos PHP desta página iniciam aqui! *
+ ***********************************************/
+
+
+/************************************************
+ * Seus códigos PHP desta página terminam aqui! *
+ ************************************************/
+
+/**
+ * Variável que define o título desta página.
+ */
 $title = "Faça contato";
 
-/*Inclui o cabeçalho da página
-*Referências:
-*     → https://www.w3schools.com/php/php_includes.asp
-*     → https://www.php.net/manual/pt_BR/function.include.php
-*/
+/**
+ * Inclui o cabeçalho da página.
+ */
 require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
+
 ?>
+
 <section>
+
     <h2>Faça contato</h2>
 
-    <form action="envia.php" method="post">
+    <form action="envia.php" method="post" name="contatos">
+
+        <p>Preencha todos os campos para entrar em contato com a equipe do Vitugo.</p>
+
         <p>
-            <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome" required minlength="3" value="Joca da Silva">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required minlength="3" class="valid">
+            <!-- O campo é obrigatório (required) e deve ter pelo menos 3 caracteres. -->
         </p>
+
         <p>
-            <label for="email">E-mail</label>
-            <input type="text" name="email" id="email" required value="joca@silva">
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required class="valid">
+            <!-- O campo é obrigatório e deve ser um e-mail (type="email"). -->
         </p>
+
         <p>
             <label for="assunto">Assunto:</label>
-            <input type="text" name="assunto" id="assunto" required minlength="5" value="Assunto do Joca">
+            <input type="text" name="assunto" id="assunto" required minlength="5" class="valid">
+            <!-- O campo é obrigatório e deve ter pelo menos 5 caracteres. -->
         </p>
+
         <p>
             <label for="mensagem">Mensagem:</label>
-            <textarea name="mensagem" id="mensagem" required minlength="5">Mensagem do Joca</textarea>
+            <textarea name="mensagem" id="mensagem" required minlength="5" class="valid"></textarea>
+            <!-- O campo é obrigatório e deve ter pelo menos 5 caracteres. -->
         </p>
+
         <p>
             <button type="submit">Enviar</button>
         </p>
-    
+
     </form>
+
 </section>
+
 <aside>
-     <h3>Lateral</h3>
-    <p>
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-     Perferendis ducimus fugiat sunt velit!
-     </p>
+
+    <h3>Lateral</h3>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, aperiam corporis culpa consequatur iusto.</p>
+
 </aside>
+
 <?php
-//Inclui o footer da página
+
+/**
+ * Inclui o rodapé da página.
+ */
 require($_SERVER['DOCUMENT_ROOT'] . '/_footer.php');
-?>
-        

@@ -1,15 +1,15 @@
 <?php
-/** 
-* Arquivo que faz a configuração inicial da página.
-* Por exemplo, conecta-se ao banco de dados 
-*/
+
+/**
+ * Arquivo que faz a configuração incial da página.
+ */
 require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
 
 /***********************************************
  * Seus códigos PHP desta página iniciam aqui! *
  ***********************************************/
 
-//Processa o formulário, se ele foi enviado.
+// Processa o formulário, somente se ele foi enviado...
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Cria e inicializa as variáveis usadas no script
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = trim(htmlspecialchars($_POST['nome']));
 
     // Recebe o campo 'email' dor formulário e sanitiza
-    $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
 
     // Recebe o campo 'assunto' do formulário e sanitiza
     $assunto = trim(htmlspecialchars($_POST['assunto']));
@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica se tem algum campo vazio
     if ($nome === '' or $email === '' or $assunto === '' or $mensagem === '') {
 
+        // Exibe mensagem de erro para o usuário e não faz mais nada
         $feedback = <<<HTML
 
 <h3>Oooops!</h3>
@@ -45,8 +46,8 @@ HTML;
          * Salva dados no banco de dados.
          */
 
-         // Query de escrita no banco
-         $sql = <<<SQL
+        // Query de escrita no banco.
+        $sql = <<<SQL
 
 INSERT INTO contacts (
     name,
@@ -62,10 +63,10 @@ INSERT INTO contacts (
 
 SQL;
 
-    // Escreve no banco de dados
-    $conn->query($sql);
+        // Escreve no banco de dados
+        $conn->query($sql);
 
-          /**
+        /**
          * Obtém o primeiro nome do remetente.
          */
 
@@ -73,48 +74,50 @@ SQL;
         // $parts[0] contém o primeiro nome.
         $parts = explode(' ', $nome);
 
-       // Abradecer ao usuário
-       $feedback = <<<HTML
+        // Abradecer ao usuário
+        $feedback = <<<HTML
 
-       <h3>Olá {$parts[0]}!</h3>
-    <p>Seu contato foi enviado com sucesso.</p>
-    <p><em>Obrigado...</em></p>
-    <p><button onclick="location.href = '/'"><i class="fa-solid fa-house-chimney"></i> Página inicial</button></p> 
+<h3>Olá {$parts[0]}!</h3>
+<p>Seu contato foi enviado com sucesso.</p>
+<p><em>Obrigado...</em></p>
+<p><button onclick="location.href = '/'"><i class="fa-solid fa-house-chimney"></i> Página inicial</button></p>    
 
 HTML;
-
 
         /**
          * Envia e-mail para o administrador do site.
          * ATENÇÃO! Não funciona em redes locais. Só em provedores pagos.
          */
+
         // Mensagem do e-mail
         $mail_message = <<<TXT
-        
-        Novo contato enviado para Vitugo:
 
-        - Remetente: {$nome}
-        - E-mail: {$email}
-        - Assunto: {$assunto}
-        - Mensagem:
-        {$mensagem}
-       
-       Obrigado...
-       
-       TXT;
-        
+Novo contato enviado para Vitugo:
+
+ - Remetente: {$nome}
+ - E-mail: {$email}
+ - Assunto: {$assunto}
+ - Mensagem:
+ {$mensagem}
+
+Obrigado...
 
 TXT;
 
-     // Enviando e-mail para 'admin@vitugo.com'.
-        // O '@' oculta mensagens de erro. MUITO CUIDADO!!!
+        /**
+         * Enviando e-mail para 'admin@vitugo.com', administrador do site.
+         * 
+         * OBS: não é possível enviar e-mails do XAMPP, do Windows ou da rede escolar usando o PHP.
+         * Usamos o '@' para ocultar mensagens de erro. 
+         * MUITO CUIDADO AO USAR '@' DESTE MODO!!!
+         */
         @mail('admin@vitugo.com', 'Um contato foi enviado.', $mail_message);
-    
     }
 } else {
+
     /**
-     * Se o formulário NÃO foi enviado
-     * sai desta página e mostra o formulário para o usuário.
+     * Se o formulário NÃO foi enviado, sai desta página e
+     * mostra o formulário para o usuário.
      */
     header('Location: index.php');
 }
@@ -123,37 +126,35 @@ TXT;
  * Seus códigos PHP desta página terminam aqui! *
  ************************************************/
 
-
+/**
+ * Variável que define o título desta página.
+ */
+$title = "Faça contato";
 
 /**
- * Variável que define o título desta página
- *     Referências:
- *     → https://www.w3schools.com/php/php_variables.asp
- *     → https://www.php.net/manual/pt_BR/language.variables.basics.php
+ * Inclui o cabeçalho da página.
  */
-
-$title = "Faça Contato";
-
-/*Inclui o cabeçalho da página
-*Referências:
-*     → https://www.w3schools.com/php/php_includes.asp
-*     → https://www.php.net/manual/pt_BR/function.include.php
-*/
 require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
+
 ?>
+
 <section>
-   
+
+    <h2>Faça contato</h2>
+    <?php echo $feedback ?>
 
 </section>
+
 <aside>
-     <h3>Lateral</h3>
-    <p>
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-     Perferendis ducimus fugiat sunt velit!
-     </p>
+
+    <h3>Lateral</h3>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, aperiam corporis culpa consequatur iusto.</p>
+
 </aside>
+
 <?php
-//Inclui o footer da página
+
+/**
+ * Inclui o rodapé da página.
+ */
 require($_SERVER['DOCUMENT_ROOT'] . '/_footer.php');
-?>
-        
