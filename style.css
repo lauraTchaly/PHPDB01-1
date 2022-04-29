@@ -252,6 +252,19 @@ body {
 }
 
 /**
+ * Estilos de uso geral.
+ * Podem ser aplicados em qualquer página do aplicativo.
+ */
+
+hr.divider {
+    border: none;
+    border-top: 1px dotted grey;
+    border-bottom: 1px dotted grey;
+    height: 3px;
+    margin: 1rem 0;
+}
+
+/**
  * Responsividade.
  * Largura >= 426px.
  */
