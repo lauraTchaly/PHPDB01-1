@@ -30,7 +30,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
 
     <h2>Faça contato</h2>
 
-    <form action="envia.php" method="post" name="contatos">
+    <form method="post" action="envia.php" name="contatos">
 
         <p>Preencha todos os campos para entrar em contato com a equipe do Vitugo.</p>
 
@@ -48,13 +48,13 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
 
         <p>
             <label for="assunto">Assunto:</label>
-            <input type="text" name="assunto" id="assunto" required minlength="5" class="valid">
+            <input type="text" name="assunto" id="assunto" required minlength="5" class="valid" autocomplete="off">
             <!-- O campo é obrigatório e deve ter pelo menos 5 caracteres. -->
         </p>
 
         <p>
             <label for="mensagem">Mensagem:</label>
-            <textarea name="mensagem" id="mensagem" required minlength="5" class="valid"></textarea>
+            <textarea name="mensagem" id="mensagem" required minlength="5" class="valid" autocomplete="off"></textarea>
             <!-- O campo é obrigatório e deve ter pelo menos 5 caracteres. -->
         </p>
 

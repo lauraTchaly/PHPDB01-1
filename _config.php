@@ -40,6 +40,16 @@ $conn->query('SET lc_time_names = pt_BR');
  */
 date_default_timezone_set('America/Sao_Paulo');
 
+/**
+ * Se usuário está logado, cria variável (array) '$user'
+ */
+if (isset($_COOKIE['user']))
+    $user = unserialize($_COOKIE['user']);
+else
+    $user = false;
+
+// dump($user, false);
+
 /*************************
  * Funções de uso geral. *
  *************************/
@@ -124,9 +134,10 @@ function get_years_old($birth)
  *         O DUMP é exibido sem pré-formatação.
  *         O script NÃO é interrompido com 'exit'.
  */
-function dump($variable, $exit = true, $pre = true) {
-    if($pre) echo '<pre>';
+function dump($variable, $exit = true, $pre = true)
+{
+    if ($pre) echo '<pre>';
     print_r($variable);
-    if($pre) echo '</pre>';
-    if($exit) exit;
+    if ($pre) echo '</pre>';
+    if ($exit) exit;
 }

@@ -33,7 +33,31 @@
 
             <a href="/sobre/" title="Sobre..."><i class="fa-solid fa-circle-info fa-fw"></i><span>Sobre</span></a>
 
-            <a href="/user/login/" title="Usuário"><i class="fa-solid fa-right-to-bracket fa-fw"></i><span>Login</span></a>
+            <?php
+
+            // Se usuário está logado...
+            if ($user) :
+            ?>
+
+                <a href="/user/profile/" title="Perfil de <?php echo $user['user_name'] ?>">
+                    <img src="<?php echo $user['user_photo'] ?>" alt="<?php echo $user['user_name'] ?>">
+                    <span>Perfil</span>
+                </a>
+
+            <?php
+
+            // Se usuário NÃO está logado
+            else :
+            ?>
+
+                <a href="/user/login/" title="Usuário">
+                    <i class="fa-solid fa-right-to-bracket fa-fw"></i>
+                    <span>Login</span>
+                </a>
+
+            <?php
+            endif;
+            ?>
 
         </nav>
 

@@ -2,14 +2,6 @@
 
 /**
  * Arquivo que faz a configuração incial da página.
- * Por exemplo, conecta-se ao banco de dados.
- * 
- * A superglobal "$_SERVER['DOCUMENT_ROOT']" retorna o caminho da raiz do site no Windows.
- * Ex.: C:\xampp\htdocs 
- *     Referências:
- *     → https://www.w3schools.com/php/php_includes.asp
- *     → https://www.php.net/manual/pt_BR/function.include.php
- *     → https://www.php.net/manual/pt_BR/language.variables.superglobals.php
  */
 require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
 
@@ -17,6 +9,18 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
  * Seus códigos PHP desta página iniciam aqui! *
  ***********************************************/
 
+// Se usuário não está logado, redireciona para a página inicial.
+if(!isset($_COOKIE['user'])) header('Location: /');
+
+// Se existe a variável 'logout' no URL da página...
+if ($_SERVER['QUERY_STRING'] === 'logout') {
+
+    // Apagar o cookie, colocando o tempo de vida negativo (-1)
+    setcookie('user', '', -1, '/');
+
+    // Redirecionar para a 'home'
+    header('Location: /');
+}
 
 /************************************************
  * Seus códigos PHP desta página terminam aqui! *
@@ -24,13 +28,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
 
 /**
  * Variável que define o título desta página.
- * Essa variável é usada no arquivo "_header.php".
- * OBS: para a página inicial (index.php) usaremos o 'slogan' do site.
- *     Referências:
- *     → https://www.w3schools.com/php/php_variables.asp
- *     → https://www.php.net/manual/pt_BR/language.variables.basics.php
  */
-$title = "Quem tem fome tem pressa...";
+$title = "Logout...";
 
 /**
  * Inclui o cabeçalho da página.
@@ -41,9 +40,15 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
 
 <section>
 
-    <h2>Título da página</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste aliquam aperiam voluptatem molestias nemo odit unde modi cupiditate exercitationem doloremque quaerat soluta rerum quidem dignissimos officiis sapiente, aut alias!</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio soluta voluptatum consequatur voluptatibus cupiditate temporibus qui, nostrum deserunt minus laudantium in officia rem dignissimos facilis modi culpa error aliquam? Quam?</p>
+    <h2>Logout / Sair</h2>
+    <p>Se você sair do aplicativo agora, terá que entrar novamente para ter acesso ao conteúdo exclusivo.</p>
+    <p>Clique no botão abaixo para sair.</p>
+    <p class="btn-center">
+        <button type="button" onclick="location.href = '?logout'">
+            <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+            Logout / Sair
+        </button>
+    </p>
 
 </section>
 
