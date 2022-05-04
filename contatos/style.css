@@ -1,0 +1,9 @@
+/* Importa folhas de estilo globais. */
+
+@import url('/style.css');
+
+.text-box {
+    margin: auto;
+    width: 100%;
+    max-width: 400px;
+}
